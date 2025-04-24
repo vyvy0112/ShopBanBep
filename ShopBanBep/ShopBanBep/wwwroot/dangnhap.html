@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>  
+
+    <div class="register-container">
+      <div class="register-form">
+          <div class="register-header">
+              <h2>Đăng Nhập</h2>
+          </div>
+  
+          <form>
+              <div class="form-group">
+                  <label for="name">Họ tên*:</label>
+                  <input type="text" id="name" name="name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                  <label for="password">Mật Khẩu*: </label>
+                  <input type="password" id="password" name="Mật Khẩu" class="form-control" required>
+              </div>
+  
+              <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
+          </form>
+      </div>
+      <div class="register-footer">
+        <span>Bạn đã chưa có tài khoản?</span>
+        <a href="dangky.html">Đăng ký</a>
+    </div>
+  </div>
+
+    <div id="footer-placeholder"></div>
+
+</body>
+<script>
+    fetch('header.html')
+     .then(response => response.text())
+     .then(data => {
+       document.getElementById('header-placeholder').innerHTML = data;
+     });
+ 
+     fetch('footer.html')
+     .then(response => response.text())
+     .then(data => {
+       document.getElementById('footer-placeholder').innerHTML = data;
+     });
+
+     function dangKy() {
+    const hoTen = document.getElementById('hoTen').value;
+    const email = document.getElementById('email').value;
+    const matKhau = document.getElementById('matKhau').value;
+
+    // Bạn có thể xử lý thêm hoặc gửi dữ liệu lên server ở đây
+    alert(`Đăng ký thành công!\nHọ tên: ${hoTen}\nEmail: ${email}`);
+  }
+ </script>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <!-- liên kết trang lấy header -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <link rel="stylesheet" href="style.css">
+
+
+
+</head>
+<body>
+  <!-- cách liên kết 1 -->
+  <div id="header-placeholder"></div>  
+  <div class="cart">
+    <h2 class="cart-title">Giỏ hàng của bạn</h2>
+    <table class="cart-table" border="2" cellspacing="0" cellpadding="10">
+      <thead>
+        <tr>
+          <th>Sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+          <th>Xoá</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img src="https://cdn.tgdd.vn/Products/Images/1983/270110/rinnai-rv-mc27be-3-700x467.jpg" alt="Bếp ga đôi Rinnai RV-MC27BE" style="width: 150px;">
+              <span class="product-name">Bếp gas Rinnai RV-MC27BE</span>
+            </div>
+          </td>
+          <td>
+            <div class="quantity-control">
+              <button class="quantity-btn minus-btn">−</button>
+              <span class="quantity-value">2</span>
+              <button class="quantity-btn plus-btn">+</button>
+            </div>
+          </td>
+          <td>15.000.000đ</td>
+          <td><button class="delete-btn">X</button></td>
+        </tr>
+        
+  
+        <tr>
+          <td>
+            <div class="product-info">
+              <img src="https://cdn.tgdd.vn/Products/Images/1983/270107/rinnai-rv-mc15g-2-700x467.jpg" alt="Bếp ga đơn Rinnai RV-MC15G" width="150px">
+              <span class="product-name">Bếp gas Rinnai RV-MC15G</span>
+            </div>
+          </td>
+          <td>
+            <div class="quantity-control">
+              <button class="quantity-btn minus-btn">−</button>
+              <span class="quantity-value">2</span>
+              <button class="quantity-btn plus-btn">+</button>
+            </div>
+          </td>
+          <td>15.000.000đ</td>
+          <td><button class="delete-btn">X</button></td>
+        </tr>
+        
+  
+  
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" style="text-align: right;"><strong>Tổng cộng: 11.000.000đ</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>  
+ 
+  <div id="footer-placeholder"></div>
+</body>
+<script>
+ fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+    });
+
+    fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+  document.addEventListener('DOMContentLoaded', () => {
+    const rows = document.querySelectorAll('tr');
+
+    rows.forEach(row => {
+      const minusBtn = row.querySelector('.minus-btn');
+      const plusBtn = row.querySelector('.plus-btn');
+      const quantitySpan = row.querySelector('.quantity-value');
+
+      if (minusBtn && plusBtn && quantitySpan) {
+        minusBtn.addEventListener('click', () => {
+          let currentValue = parseInt(quantitySpan.textContent);
+          if (currentValue > 1) {
+            quantitySpan.textContent = currentValue - 1;
+          }
+        });
+
+        plusBtn.addEventListener('click', () => {
+          let currentValue = parseInt(quantitySpan.textContent);
+          quantitySpan.textContent = currentValue + 1;
+        });
+      }
+    });
+  });
+
+
+  document.querySelectorAll('.delete-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+      // Xóa hàng chứa nút được bấm
+      const row = this.closest('tr');
+      if (row) {
+        row.remove();
+      }
+    });
+  });
+  
+</script>
+
+</html>
